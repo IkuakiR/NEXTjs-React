@@ -8,11 +8,6 @@ export default function Home() {
   const [value1, setValue1] = useState('')
   const [value2, setValue2] = useState('')
 
-  const Ans = () => {
-    const num1 = Number(value1) || 0
-    const num2 = Number(value2) || 0
-    setState(num1 + num2)
-  }
 
   return (
     <>
@@ -20,7 +15,14 @@ export default function Home() {
         <p>足し算アプリ</p>
         <p>{state}</p>
         <Add value1={value1} value2={value2} />
-        <button onClick={Ans}>計算</button>
+        <button onClick={() => {
+          const Ans = () => {
+            console.log(value1);
+            const num1 = Number(value1)
+            const num2 = Number(value2)
+            setState(num1 + num2)
+          }
+        }}>計算</button>
       </div>
     </>
   )
