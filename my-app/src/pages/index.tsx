@@ -4,24 +4,37 @@ import { useState } from 'react'
 
 export default function Home() {
 
-  const [state, setState] = useState(0)
-  const [value1, setValue1] = useState('')
-  const [value2, setValue2] = useState('')
+  const [state, setState] = useState({
+    value1: '',
+    value2: '',
+    ans: 0
+  })
+
 
 
   return (
     <>
       <div>
         <p>足し算アプリ</p>
-        <p>{state}</p>
-        <Add value1={value1} value2={value2} />
+        <p>{state.ans}</p>
+        <input
+          type="text"
+          value={state.value1}
+          onChange={(event) => setState({ ...state, value1: event.target.value })}
+        />
+        <p>+</p>
+        <input type="text"
+          value={state.value2}
+          onChange={(event) => setState({ ...state, value2: event.target.value })}
+        />
+        <p>=</p>
         <button onClick={() => {
-          const Ans = () => {
-            console.log(value1);
-            const num1 = Number(value1)
-            const num2 = Number(value2)
-            setState(num1 + num2)
-          }
+          let num1 = Number(state.value1)
+          let num2 = Number(state.value2)
+          setState({
+            ...state,
+            ans: num1 + num2
+          })
         }}>計算</button>
       </div>
     </>
